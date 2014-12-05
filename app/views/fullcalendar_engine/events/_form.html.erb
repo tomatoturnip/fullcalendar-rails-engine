@@ -1,5 +1,10 @@
 <%= form_for @event ||= FullcalendarEngine::Event.new, :html => { id: 'event_form' } do |f| %>
 <p>
+  <%=f.label :task, "Tasks" %>
+  <br/>
+  <%=f.select :task, FullcalendarEngine::Event::TASKS.values, {}, onchange: "FullcalendarEngine.Events.showPeriodAndFrequency(this.value);" %>
+</p>
+<p>
   <%=f.label :title %>
   <br/>
   <%=f.text_field :title %>
