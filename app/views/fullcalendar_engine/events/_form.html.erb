@@ -2,7 +2,6 @@
 <p>
   <%=f.label :task, "Tasks" %>
   <br/>
-  <%#=f.select :task, FullcalendarEngine::Event::TASKS.values, {}, onchange: "FullcalendarEngine.Events.showPeriodAndFrequency(this.value);" %>
   <%=f.select :task, FullcalendarEngine::Event::TASKS.values, {} %>
 </p>
 <p>

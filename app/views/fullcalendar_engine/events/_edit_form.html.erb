@@ -1,5 +1,10 @@
 <%= form_for @event, :html => { :id => 'event_form' } do |f| %>
 <p>
+  <%=f.label :task, "Tasks" %>
+  <br/>
+  <%=f.select :task, FullcalendarEngine::Event::TASKS.values, {} %>
+</p>
+<p>
   <%=f.label :title %>
   <br/>
   <%=f.text_field :title %>
@@ -33,7 +38,7 @@
   <%else-%>
   <%=f.submit 'Update', :onclick => "document.getElementById('event_commit_button').value = this.value"%>
   <%end-%>
-  
+
   <span id = "updating_events" class="spinner" style = "display:none;">Updating, Please wait...</span>
 </p>
 <%end %>

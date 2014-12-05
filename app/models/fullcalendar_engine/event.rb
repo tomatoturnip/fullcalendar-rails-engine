@@ -14,7 +14,8 @@ module FullcalendarEngine
       :usher => "Usher",
       :pianist => "Pianist",
       :speaker => "Speaker",
-      :translator => "Translator"
+      :translator => "Translator",
+      :cleaning => "Clean up"
     }
 
     REPEATS = {

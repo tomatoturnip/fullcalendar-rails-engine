@@ -36,11 +36,12 @@ module FullcalendarEngine
       @events.each do |event|
         events << { id: event.id,
                     title: event.title,
-                    description: event.description || '', 
+                    description: event.description || '',
                     start: event.starttime.iso8601,
                     end: event.endtime.iso8601,
                     allDay: event.all_day,
-                    recurring: (event.event_series_id) ? true : false }
+                    recurring: (event.event_series_id) ? true : false,
+                    color: set_event_color(event) }
       end
       render json: events.to_json
     end
@@ -59,12 +60,12 @@ module FullcalendarEngine
       if @event
         @event.endtime = make_time_from_minute_and_day_delta(@event.endtime)
         @event.save
-      end    
+      end
       render nothing: true
     end
 
     def edit
-      render json: { form: render_to_string(partial: 'edit_form') } 
+      render json: { form: render_to_string(partial: 'edit_form') }
     end
 
     def update
@@ -73,7 +74,7 @@ module FullcalendarEngine
         @events = @event.event_series.events
         @event.update_events(@events, event_params)
       when 'Update All Following Occurrence'
-        @events = @event.event_series.events.where('starttime > :start_time', 
+        @events = @event.event_series.events.where('starttime > :start_time',
                                                    start_time: @event.starttime.to_formatted_s(:db)).to_a
         @event.update_events(@events, event_params)
       else
@@ -107,7 +108,7 @@ module FullcalendarEngine
     end
 
     def event_params
-      params.require(:event).permit('title', 'description', 'starttime', 'endtime', 'all_day', 'period', 'frequency', 'commit_button')
+      params.require(:event).permit('task', 'title', 'description', 'starttime', 'endtime', 'all_day', 'period', 'frequency', 'commit_button', 'color')
     end
 
     def determine_event_type
@@ -120,6 +121,14 @@ module FullcalendarEngine
 
     def make_time_from_minute_and_day_delta(event_time)
       params[:minute_delta].to_i.minutes.from_now((params[:day_delta].to_i).days.from_now(event_time))
+    end
+
+    def set_event_color(event)
+      if event.color == nil
+        '#3B91AD' #default color
+      else
+        event.color
+      end
     end
   end
 end
