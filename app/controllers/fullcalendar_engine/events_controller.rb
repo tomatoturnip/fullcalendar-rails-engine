@@ -35,6 +35,7 @@ module FullcalendarEngine
       events = []
       @events.each do |event|
         events << { id: event.id,
+                    task: event.task,
                     title: event.title,
                     description: event.description || '',
                     start: event.starttime.iso8601,
@@ -124,10 +125,22 @@ module FullcalendarEngine
     end
 
     def set_event_color(event)
-      if event.color == nil
-        '#3B91AD' #default color
+      if event.task == "Meeting"
+        '#A4BDFC'
+      elsif event.task == "Children's Ministry"
+        '#7AE7BF'
+      elsif event.task == "Usher"
+        '#51B749'
+      elsif event.task == "Piano"
+        '#FBD75B'
+      elsif event.task == "Speaker"
+        '#FFB878'
+      elsif event.task == "Translator"
+        '#FF887C'
+      elsif event.task == "Clean up"
+        '#DBADFF'
       else
-        event.color
+        '#5484ED' #default color
       end
     end
   end

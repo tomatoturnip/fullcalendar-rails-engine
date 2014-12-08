@@ -8,15 +8,9 @@ module FullcalendarEngine
 
     belongs_to :event_series
 
-    TASKS = {
-      :meeting => "Meeting",
-      :ministry => "Children's Ministry",
-      :usher => "Usher",
-      :pianist => "Pianist",
-      :speaker => "Speaker",
-      :translator => "Translator",
-      :cleaning => "Clean up"
-    }
+
+
+    TASK = ["Meeting", "Children's Ministry", "Usher", "Piano", "Speaker", "Translator", "Clean up"]
 
     REPEATS = {
       :no_repeat => "Does not repeat",
