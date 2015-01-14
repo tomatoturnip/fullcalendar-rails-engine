@@ -1,14 +1,30 @@
-<p>
-  <%= link_to 'Create Event', 'javascript:void()', id: 'new_event' %>
-</p>
-<div>
-  <div class='calendar'></div>
-</div>
-<div id="event_desc_dialog" class="dialog" style="display:none;"></div>
-<div id="create_event_dialog" class="dialog" style ="display:none;">
-  <%= render 'form' %>
+<div class="container">
+  <ul class="nav nav-justified">
+    <li><a class="text-center" href="#"><i class="fa fa-institution fa-4x"></i> <br>Meeting</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-child fa-4x"></i> <br>Children's Ministry</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-male fa-4x"></i> <br>Usher</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-music fa-4x"></i> <br>Piano</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-microphone fa-4x"></i> <br>Speaker</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-comments-o fa-4x"></i> <br>Translator</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-trash fa-4x"></i> <br>Clean Up</a></li>
+    <li><a class="text-center" href="#"><i class="fa fa-file-sound-o fa-4x"></i> <br>A/V Sound</a></li>
+  </ul>
 </div>
 
+<div class="container">
+  <hr>
+  <p>
+    <%= link_to 'Create Event', 'javascript:void()', id: 'new_event', class: "btn btn-primary" %>
+  </p>
+  <div>
+    <div class='calendar'></div>
+  </div>
+  <div id="event_desc_dialog" class="dialog" style="display:none;"></div>
+  <div id="create_event_dialog" class="dialog" style ="display:none;">
+    <%= render 'form' %>
+  </div>
+</div>
+<br />
 <script>
   $(document).ready(function(){
     $('.calendar').fullCalendar(full_calendar_options);

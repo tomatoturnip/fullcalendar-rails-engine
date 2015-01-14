@@ -3,7 +3,16 @@ require_dependency 'fullcalendar_engine/application_controller'
 module FullcalendarEngine
   class EventsController < ApplicationController
 
-    layout FullcalendarEngine::Configuration['layout'] || 'application'
+    # layout FullcalendarEngine::Configuration['layout'] || 'member' || 'application'
+    layout :set_layout
+
+    def set_layout
+      if user_signed_in? && current_user.role == "member"
+        "member"
+      elsif user_signed_in? && current_user.role == "admin"
+        "application"
+      end
+    end
 
     before_filter :load_event, only: [:edit, :update, :destroy, :move, :resize]
     before_filter :determine_event_type, only: :create
